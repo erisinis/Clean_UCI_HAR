@@ -40,7 +40,7 @@ merge_all$Activity[merge_all$Activity == 3]<- "WalkingDownstairs"
 merge_all$Activity[merge_all$Activity == 4]<- "Sitting"
 merge_all$Activity[merge_all$Activity == 5]<- "Standing"
 merge_all$Activity[merge_all$Activity == 6]<- "Laying"
-print (dim(merge_all))
+#print (dim(merge_all))
 
 ###Group by Activity and Subject, then average (mean) each measurement column. 
 grp_all<- merge_all %>%
@@ -56,10 +56,10 @@ grpall_nms<- gsub("-std", "-std_avg", grpall_nms)
 grpall_nms<- gsub(".Activity$","grp_Activity", grpall_nms)
 grpall_nms<- gsub(".Subject$", "grp_Subject", grpall_nms)
 setnames(grp_all, grpall_nms)
-print(dim(grp_all))
+#print(dim(grp_all))
 
 #write.csv(colnames(merge_all),"merge_hdrs.csv")
 #write.csv(colnames(grp_all), "grp_hdrs.csv")
-write.table(merge_all, file = "merge_all.txt", row.names = FALSE, col.names = TRUE, sep = "\t",quote = FALSE)
+#write.table(merge_all, file = "merge_all.txt", row.names = FALSE, col.names = TRUE, sep = "\t",quote = FALSE)
 write.table(grp_all, file = "summarize_all.txt", row.names = FALSE, col.names = TRUE, sep = "\t",quote = FALSE)
 }
