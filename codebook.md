@@ -5,11 +5,15 @@ Two Cleaned datasets are output by the function run_analysis:
 
 For further information on the measurements included, please see the features_info.txt file for the original UCI HAR Dataset, available with the download at: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip  
 
-- Subject - numeric value () assigned to the subject of the experiment.  
-- Activity - character value indicating the Activity performed by the Subject for each row of measurements.  
+- Subject - numeric value () assigned to the subject of the experiment. Values are 1-30, as there were 30 subjects in the original dataset. 
+- Activity - character value indicating the Activity performed by the Subject for each row of measurements.  To see how character activity labels correspond to numeric values in the original dataset, see activity_labels.txt in the original UCI HAR Dataset folder.
 
 
-For merge_all.txt, the included measurements are the mean (mean()) and standard deviation (std()) of the measurements in the original UCI HAR Dataset. In this analysis, mean and standard deviation are broadly interpreted to include columns with "mean" or "std" in the name, but not meanFreq since this is a weighted average or angle since this is an angle between to vectors rather than a discrete measurement(?). Measurements followed by -XYZ stand in for 6 separate measurements on the X, Y and Z axis or mean and standard deviation. Measurements not followed by -XYZ each have a mean and a standard deviation variant. For example: 
+For merge_all.txt, the included measurements are the mean (mean()) and standard deviation (std()) of the measurements in the original UCI HAR Dataset. In this analysis, mean and standard deviation are broadly interpreted to include columns with "mean" or "std" in the name, but not meanFreq since this is a weighted average or angle since this is an angle between to vectors rather than a discrete measurement(?). 
+
+Values of mean and standard deviation are all within the range -1:1.
+
+Measurements followed by -XYZ stand in for 6 separate measurements on the X, Y and Z axis or mean and standard deviation. Measurements not followed by -XYZ each have a mean and a standard deviation variant. For example: 
 -- tBodyAcc-XYZ stands in for:  
 -- tBodyAcc-mean-X  
 -- tBodyAcc-mean-Y  
