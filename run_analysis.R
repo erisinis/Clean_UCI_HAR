@@ -12,11 +12,13 @@ run_analysis<- function(){
 ##Read in feature names file. Keep a separate character vector with the cleaned up column names to use when finding the means of the measurements grouped by Subject and Activity.
   feats<- fread("./UCI HAR Dataset/features.txt", colClasses = "character")
   fhdrs<- feats$V2
-  fhdrs<- gsub("\\(\\)-X","X",fhdrs)
-  fhdrs<- gsub("\\(\\)-Y","Y",fhdrs)
-  fhdrs<- gsub("\\(\\)-Z","Z",fhdrs)
+  fhdrs<- gsub("\\(\\)-X$","-X",fhdrs)
+  fhdrs<- gsub("\\(\\)-Y$","-Y",fhdrs)
+  fhdrs<- gsub("\\(\\)-Z$","-Z",fhdrs)
   fhdrs<- gsub("BodyBody", "Body", fhdrs)
-  fhdrs<- gsub("-","_",fhdrs)
+  #fhdrs<- gsub("-","_",fhdrs)
+  fhdrs<-gsub("()","",fhdrs, fixed = TRUE)
+  #fdrs<-gsub("\\)","",fhdrs)
   hdrs<- c("Subject", "Activity", fhdrs)
 ##Read in each relevant text file using read.table
   ##X_ files contain accelerometer readings. 
@@ -53,8 +55,13 @@ print (dim(merge_all))
 grp_all<- merge_all %>%
   group_by(Activity, Subject) %>%
   summarise_each(funs(mean))
+#colnames(grp_all[,3:length(grp_all)])<- gsub("-X", "-X_avg",colnames(grp_all[,3:length(grp_all)]))
+grpall_nms<- colnames(grp_all)
+grpall_nms<- gsub("-X", "-X_avg", grpall_nms)
+setnames(grp_all, grpall_nms)
+print(dim(grp_all))
 
-write.csv(hdrs,"hdrs.csv")
+#write.csv(hdrs,"hdrs.csv")
 write.table(merge_all, file = "merge_all.txt", row.names = TRUE, col.names = TRUE, sep = "\t",quote = FALSE)
 write.table(grp_all, file = "summarize_all.txt", row.names = TRUE, col.names = TRUE, sep = "\t",quote = FALSE)
 }
