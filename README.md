@@ -1,5 +1,5 @@
 # README
-This readme addresses the steps taken to obtain, clean and summarize the UCI HAR Dataset.  
+This readme outlines the steps taken to obtain, clean and summarize the UCI HAR Dataset.  
 
 Before running the function to clean and summarize the dataset, you must download and extract the dataset to your working directory.  
 - Download link: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip  
